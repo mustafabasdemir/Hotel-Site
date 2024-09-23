@@ -148,7 +148,28 @@
         #chkBox:checked + .mainContnt .box{
             transform: translateY(0);
         }
+
+
+
+         /* Mobilde iframe'i gizle */
+         @media (max-width: 768px) {
+            .form-iframe {
+                display: none;
+            }
+            .form-button {
+                display: block; /* Butonu göster */
+            }
+        }
+
+        /* Desktop için butonu gizle */
+        @media (min-width: 769px) {
+            .form-button {
+                display: none; /* Butonu gizle */
+            }
+        }
     </style>
+
+
 
 </head>
 
@@ -886,9 +907,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="boxes bx1"></div>
                     <div class="boxes bx2">
                         <h5>Sana Özel Fırsatımızı kaçırma 😍</h5>
-             
-                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdoo2ve_et-SZ9ZQprpSevBHabzaxDgbqf4ax6c-j0HrspPDQ/viewform?embedded=true" width="400" height="300" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>
-                     
+
+                        <div class="form-container">
+                            <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdoo2ve_et-SZ9ZQprpSevBHabzaxDgbqf4ax6c-j0HrspPDQ/viewform?embedded=true" width="400" height="300" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>
+                    
+                            <button class="form-button" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdoo2ve_et-SZ9ZQprpSevBHabzaxDgbqf4ax6c-j0HrspPDQ/viewform', '_blank')">
+                                Formu Doldur
+                            </button>
                         <div class="close-box">
                             <label for="chkBox" class="box-close">X</label>
                         </div>
