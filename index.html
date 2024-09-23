@@ -29,6 +29,155 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+    
+  /* Modalı en üstte göstermek için z-index ayarla */
+  #myModal {
+    z-index: 9999999 !important;
+  }
+
+  *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: poppins;
+            text-decoration: none;
+            list-style: none
+        }
+        .wrapper{
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url(https://images.pexels.com/photos/612252/pexels-photo-612252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+        .wrapper label{
+            background: #262626;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 24px;
+            padding: 16px 48px;            
+        }
+        #chkBox{
+            display: none;
+        }
+        .mainContnt{
+            width: 100%;
+            height: 100%;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.7s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 300;
+            background: rgba(0,0,0,0.8);
+            
+        }
+        .box{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 70%;
+            height: 410x;
+            transform: translateY(-1000px);
+            transition: all 2s;
+            margin: auto;
+            background: #fff;
+            
+        }
+        .bx1{
+            background-image: url(https://images.pexels.com/photos/1938032/pexels-photo-1938032.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        .bx2{
+            padding: 60px 32px 0 32px;
+        }
+        .bx2 h3 {
+	margin-bottom: 16px;
+	text-transform: uppercase;
+}
+        .login-form input {
+	width: 100%;
+	height: 52px;
+	padding: 15px;
+	margin-bottom: 25px;
+}
+        .login-form input[type="submit"] {
+	background: deepskyblue;
+	font-size: 25px;
+	text-transform: uppercase;
+	line-height: 20px;
+	color: #fff;
+}
+        
+        .close-box{
+            position: relative;
+            text-align: right;
+            color: #262626;
+            font-weight: bold;
+            margin-top: 64px;
+            margin-bottom: 32px;
+            
+            
+        }
+        .box-close {
+	position: absolute;
+	bottom: 350px;
+	right: 5px;
+}
+        #chkBox:checked + .mainContnt{
+            visibility: visible;
+            opacity: 1;
+        }
+        #chkBox:checked + .mainContnt .box{
+            transform: translateY(0);
+        }
+    </style>
+
+
+<script>
+        // Tarayıcı ve işletim sistemi bilgilerini al
+        const userAgent = navigator.userAgent; // Tarayıcı bilgisi
+        const platform = navigator.platform; // İşletim sistemi bilgisi
+
+        // Tarih bilgisini al
+        const date = new Date();
+        const formattedDate = date.toLocaleString(); // Yerel tarih saat formatında
+
+        // Konum bilgisi almak için izin iste
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude; // Enlem
+                const longitude = position.coords.longitude; // Boylam
+
+                // Konsolda görüntüleyin
+                console.log('Tarayıcı Bilgisi:', userAgent);
+                console.log('İşletim Sistemi Bilgisi:', platform);
+                console.log('Tarih Bilgisi:', formattedDate);
+                console.log('Konum Bilgisi: Enlem:', latitude, 'Boylam:', longitude);
+            }, function(error) {
+                console.error('Konum bilgisi alınamadı:', error);
+            });
+        } else {
+            console.error('Tarayıcı, konum bilgisi almak için desteklenmiyor.');
+        }
+</script>
 </head>
 
 <body>
@@ -138,10 +287,6 @@
         <!-- Category Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Property Types</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
-                </div>
                 <div class="row g-4">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
@@ -149,8 +294,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-apartment.png" alt="Icon">
                                 </div>
-                                <h6>Apartment</h6>
-                                <span>123 Properties</span>
+                                <h6>Apartman</h6>
+                                <span>30 Fırsat </span>
                             </div>
                         </a>
                     </div>
@@ -161,7 +306,7 @@
                                     <img class="img-fluid" src="img/icon-villa.png" alt="Icon">
                                 </div>
                                 <h6>Villa</h6>
-                                <span>123 Properties</span>
+                                <span>16 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -171,8 +316,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-house.png" alt="Icon">
                                 </div>
-                                <h6>Home</h6>
-                                <span>123 Properties</span>
+                                <h6>Ev</h6>
+                                <span>11 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -182,8 +327,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-housing.png" alt="Icon">
                                 </div>
-                                <h6>Office</h6>
-                                <span>123 Properties</span>
+                                <h6>Ofis</h6>
+                                <span>3 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -193,8 +338,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-building.png" alt="Icon">
                                 </div>
-                                <h6>Building</h6>
-                                <span>123 Properties</span>
+                                <h6>İşletme</h6>
+                                <span>2 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -204,8 +349,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-neighborhood.png" alt="Icon">
                                 </div>
-                                <h6>Townhouse</h6>
-                                <span>123 Properties</span>
+                                <h6>Tiny House</h6>
+                                <span>16 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -215,8 +360,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-condominium.png" alt="Icon">
                                 </div>
-                                <h6>Shop</h6>
-                                <span>123 Properties</span>
+                                <h6>Karavan</h6>
+                                <span>23 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -226,8 +371,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-luxury.png" alt="Icon">
                                 </div>
-                                <h6>Garage</h6>
-                                <span>123 Properties</span>
+                                <h6>Araç</h6>
+                                <span>122 Fırsat</span>
                             </div>
                         </a>
                     </div>
@@ -247,12 +392,12 @@
                         </div>
                     </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">#1 Place To Find The Perfect Property</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Clita duo justo magna dolore erat amet</p>
-                        <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+                        <h1 class="mb-4">#1 Mükemmel Gayrimenkulü Bulabileceğiniz Yer</h1>
+                        <p class="mb-4">Ailenizle birlikte huzur ve mutluluğu bulabileceğiniz, doğanın içinde, konforlu ve modern bir yaşam sunan bu harika evde, keyif dolu anılar biriktirin. Geniş yaşam alanları ve ferah ortamıyla aileniz için ideal bir yuva!</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Uygun Fiyat</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Maksimum Genişlik</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Güvenli</p>
+                        <a class="btn btn-primary py-3 px-5 mt-3" href="">Devamını Oku</a>
                     </div>
                 </div>
             </div>
@@ -260,7 +405,7 @@
         <!-- About End -->
 
 
-        <!-- Property List Start -->
+        <!-- Property List Start 
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-0 gx-5 align-items-end">
@@ -650,7 +795,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Property List End -->
 
 
@@ -659,10 +804,10 @@
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Get In Touch</h5>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <h5 class="text-white mb-4">Bize Ulaş</h5>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>11352 - ANTALYA</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>0242 215 22 22</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@tatilbudur.com</p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -670,15 +815,15 @@
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <!-- <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
                         <a class="btn btn-link text-white-50" href="">About Us</a>
                         <a class="btn btn-link text-white-50" href="">Contact Us</a>
                         <a class="btn btn-link text-white-50" href="">Our Services</a>
                         <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
                         <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-6"> 
                         <h5 class="text-white mb-4">Photo Gallery</h5>
                         <div class="row g-2 pt-2">
                             <div class="col-4">
@@ -700,13 +845,13 @@
                                 <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Newsletter</h5>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                        <h5 class="text-white mb-4">Bize Ulaş</h5>
+                        <p>Fırsatlardan Anından Haberdar Ol.</p>
                         <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Mail Adresi">
+                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Abone Ol</button>
                         </div>
                     </div>
                 </div>
@@ -715,19 +860,19 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+                            &copy; <a class="border-bottom" href="#">TatilBudur</a>, Tüm Hakları Saklır. 
 							
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+							<!-- Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> -->
                         </div>
-                        <div class="col-md-6 text-center text-md-end">
+                        <!-- <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="">Home</a>
                                 <a href="">Cookies</a>
                                 <a href="">Help</a>
                                 <a href="">FQAs</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -749,6 +894,83 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        // Sayfa yüklendiğinde modalı aç
+document.addEventListener('DOMContentLoaded', function () {
+  var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+  myModal.show();
+});
+    </script>
 </body>
 
 </html>
+
+
+<!--    modal  -->
+            
+            <input type="checkbox" name="" id="chkBox" checked>
+            <div class="mainContnt" style="margin-top: 20px;">
+                <div class="box">
+                    <div class="boxes bx1"></div>
+                    <div class="boxes bx2">
+                        <h5>Sana Özel Fırsatımızı kaçırma 😍</h5>
+             
+                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdoo2ve_et-SZ9ZQprpSevBHabzaxDgbqf4ax6c-j0HrspPDQ/viewform?embedded=true" width="400" height="300" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>
+                     
+                        <div class="close-box">
+                            <label for="chkBox" class="box-close">X</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 
+            <script>
+                document.getElementById('submitBtn').addEventListener('click', function(event) {
+                    event.preventDefault(); // Formun varsayılan davranışını durdurur
+            
+                    // Ad Soyad ve Mail Adresi değerlerini al
+                    const name = document.getElementById('nameInput').value;
+                    const email = document.getElementById('emailInput').value;
+            
+                    // Tarayıcı ve işletim sistemi bilgilerini al
+                    const userAgent = navigator.userAgent; // Tarayıcı bilgisi
+                    const platform = navigator.platform; // İşletim sistemi bilgisi
+            
+                    // Tarih bilgisini al
+                    const date = new Date();
+                    const formattedDate = date.toLocaleString(); // Yerel tarih saat formatında
+            
+                    // Konum bilgisi almak için izin iste
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            const latitude = position.coords.latitude; // Enlem
+                            const longitude = position.coords.longitude; // Boylam
+            
+                            // Bilgileri bir metin formatında hazırla
+                            const fileContent = `
+            Ad Soyad: ${name}
+            Mail Adresi: ${email}
+            Tarayıcı Bilgisi: ${userAgent}
+            İşletim Sistemi Bilgisi: ${platform}
+            Tarih Bilgisi: ${formattedDate}
+            Konum Bilgisi: Enlem: ${latitude}, Boylam: ${longitude}
+                            `.trim();
+            
+                            // Blob oluştur ve dosya indirme işlemi başlat
+                            const blob = new Blob([fileContent], { type: 'text/plain' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'not.txt'; // İndirilecek dosya adı
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url); // URL'yi serbest bırak
+                        }, function(error) {
+                            console.error('Konum bilgisi alınamadı:', error);
+                        });
+                    } else {
+                        console.error('Tarayıcı, konum bilgisi almak için desteklenmiyor.');
+                    }
+                });
+            </script> -->
