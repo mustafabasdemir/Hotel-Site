@@ -150,34 +150,6 @@
         }
     </style>
 
-
-<script>
-        // Tarayıcı ve işletim sistemi bilgilerini al
-        const userAgent = navigator.userAgent; // Tarayıcı bilgisi
-        const platform = navigator.platform; // İşletim sistemi bilgisi
-
-        // Tarih bilgisini al
-        const date = new Date();
-        const formattedDate = date.toLocaleString(); // Yerel tarih saat formatında
-
-        // Konum bilgisi almak için izin iste
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                const latitude = position.coords.latitude; // Enlem
-                const longitude = position.coords.longitude; // Boylam
-
-                // Konsolda görüntüleyin
-                console.log('Tarayıcı Bilgisi:', userAgent);
-                console.log('İşletim Sistemi Bilgisi:', platform);
-                console.log('Tarih Bilgisi:', formattedDate);
-                console.log('Konum Bilgisi: Enlem:', latitude, 'Boylam:', longitude);
-            }, function(error) {
-                console.error('Konum bilgisi alınamadı:', error);
-            });
-        } else {
-            console.error('Tarayıcı, konum bilgisi almak için desteklenmiyor.');
-        }
-</script>
 </head>
 
 <body>
